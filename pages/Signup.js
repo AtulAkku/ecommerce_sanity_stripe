@@ -1,0 +1,84 @@
+import React,{useState} from 'react'
+import styles from '../styles/Style1.module.css'
+import { FaLinkedinIn, FaGoogle, FaFacebookF} from 'react-icons/fa';
+
+const Signup = () => {
+  const [email, setemail] = useState("")
+  const [password, setpassword] = useState("")
+  const [name, setname] = useState("")
+  const [phone, setphone] = useState("")
+  const onchange=(e)=>{
+    if (e.target.name == 'email') {
+        setemail(e.target.value)
+      }
+      else if (e.target.name == 'password') {
+        setpassword(e.target.value)
+      }
+      else if (e.target.name == 'name'){
+        setname(e.target.value)
+      }
+      else if (e.target.name == 'phone'){
+        setphone(e.target.value)
+      }
+  }
+
+    return (
+        <div className={styles.body}>
+            <div className={styles.boxform }>
+                <div className={styles.left}>
+                    <div className={styles.overlay}>
+                        <p className={styles.hadding1}>Welcome to Sports Store</p>
+                        <p>By Singing in, you agree to SOS's Privacy Policy and Terms of Use</p>
+                        <span>
+                            <p>login with social media</p>
+                            <a href="#" className="border-2 border-gray-200 rounded-full p-3 mx-1">
+                                <FaFacebookF className="text-sm"/>
+                            </a>
+                            <a href="#" className="border-2 border-gray-200 rounded-full p-3 mx-1">
+                                <FaLinkedinIn className="text-sm"/>
+                            </a>
+                            <a href="#" className="border-2 border-gray-200 rounded-full p-3 mx-1">
+                                <FaGoogle className="text-sm"/>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+
+            <div className={styles.right}>
+                    <h5>Signup</h5>
+                    <form action="#">
+                        <p>Already have an account? <strong><a href="#">Login Directly</a></strong></p>
+                        <div className={styles.inputs}>
+                            
+                            <label htmlFor='name' className={styles.lable}>Name</label>
+                                <input onChange={onchange} name="name" value={name} type="text" placeholder="Enter your name"/>
+                            
+                            <label htmlFor='phone' className={styles.lable}>Mobile Number</label>
+                                <input onChange={onchange} name="phone" value={phone} type="text" placeholder="Enter your Mobile Number"/>
+
+                            <label htmlFor='email' className={styles.lable}>Email</label>
+                                <input onChange={onchange} name="email" value={email} type="text" placeholder="Username"/>
+                                <br></br>
+                            
+                            <label htmlFor='password' className={styles.lable}>Password</label>
+                                <input onChange={onchange} name="password" value={password} type="password" placeholder="Password"/>
+                        </div>
+
+                        <br></br>
+
+
+                        <br></br>
+                        <div className={styles.buttons}>
+                            <button>Signup</button>
+                            <a href="Login"><button>Login</button></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    )
+}
+
+export default Signup
