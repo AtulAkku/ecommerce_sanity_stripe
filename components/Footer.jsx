@@ -31,7 +31,7 @@ const Footer = () => {
       </div>
     </div>
     <div className="footer-container">
-      <p>2022 JSM Headphones All rights reserverd</p>
+      <p>2023 Sports Out Studios All rights reserverd</p>
       <p className="icons">
         <AiFillInstagram />
         <AiOutlineTwitter />

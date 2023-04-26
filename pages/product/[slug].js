@@ -17,7 +17,7 @@ const ProductDetails = ({ product, products }) => {
   }
 
   return (
-    <div>
+    <div className='maxWidth'>
       <div className="product-detail-container">
         <div>
           <div className="image-container">

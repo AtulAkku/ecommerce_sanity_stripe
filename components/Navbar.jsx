@@ -5,10 +5,14 @@ import { AiOutlineShopping } from 'react-icons/ai'
 import { Cart } from './';
 import { useStateContext } from '../context/StateContext';
 
-const Navbar = () => {
+const Navbar = ({user,logout}) => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
   return (
+  <>
+    <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    </head>
     <div className="navbar-container">
       <p className="logo">
         <Link href="/">Sports Shop</Link>
@@ -16,11 +20,11 @@ const Navbar = () => {
       <div>
         <ul id="navbar">
           <li><a className="active" href="/">HOME</a></li>
-          <li><a href="/Login">LOGIN</a></li>
           <li><a href="/About">ABOUT</a></li>
           <li><a href="/Contact">CONTACT</a></li>
-          <li><a href="#"><i className="fa-solid fa-user"></i></a></li>
-          <li><a href="#"><i className="fa-solid fa-cart-shopping"></i></a></li>
+          {!user.value && <li><a href="/Login">LOGIN</a></li>}
+          {user.value && <li><a href="#"><i className="fa-solid fa-user"></i></a></li>}
+          {user.value && <li><a onClick={logout}> LOGOUT </a></li>}
         </ul>
       </div>
 
@@ -31,6 +35,7 @@ const Navbar = () => {
 
       {showCart && <Cart />}
     </div>
+  </>
   )
 }
 
