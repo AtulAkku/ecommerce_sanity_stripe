@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="footer-section">
         <ul>
           <h1>About us</h1>
-          <li><a >Email</a></li>
+          <li><a href="mailto:atulakku99@gmail.com">Email</a></li>
           <li><a href="https://instagram.com/atul_akku">Instagram</a></li>
           <li><a href='https://www.facebook.com/profile.php?id=100010328431787&sk='>Facebook</a></li>
         </ul>

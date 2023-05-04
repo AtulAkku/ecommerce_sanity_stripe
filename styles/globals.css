@@ -58,7 +58,7 @@ a {
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  padding: 8px 40px;
+  padding: 8px 70px;
   position: relative;
   margin-bottom: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
