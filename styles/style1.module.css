@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+ 
+.outBox{
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+	background-size: cover;
+	
+	
+}
+.outBox img{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+}
+.container1{
+	opacity: 0.8;
+	width: 85%;
+	background: #9a9797;
+	border-radius: 6px;
+	padding: 20px 60px 30px 40px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  .container1 .content{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  }
+  .container1 .content .leftSide{
+	width: 25%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 15px;
+	position: relative;
+  }
+  .content .leftSide::before{
+	content: '';
+	position: absolute;
+	height: 70%;
+	width: 2px;
+	right: -15px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: #afafb6;
+  }
+  .content .leftSide .details{
+	margin: 14px;
+	text-align: center;
+  }
+  .content .leftSide .details i{
+	font-size: 30px;
+	color: #3e2093;
+	margin-bottom: 10px;
+  }
+  .content .leftSide .details .topic{
+	font-size: 18px;
+	font-weight: 500;
+  }
+  .content .leftSide .details .textOne,
+  .content .leftSide .details .textTwo{
+	font-size: 14px;
+	color:black;
+  }
+  .container1 .content .rightSide{
+	width: 75%;
+	margin-left: 75px;
+  }
+  .content .rightSide .topicText{
+	font-size: 23px;
+	font-weight: 600;
+	color: #29165e;
+  }
+  .rightSide .inputBox{
+	height: 50px;
+	width: 100%;
+	margin: 12px 0;
+  }
+  .rightSide .inputBox input,
+  .rightSide .inputBox textarea{
+	height: 100%;
+	width: 100%;
+	border: none;
+	outline: none;
+	font-size: 16px;
+	background: #F0F1F8;
+	border-radius: 6px;
+	padding: 0 15px;
+	resize: none;
+  }
+  .rightSide .messageBox{
+	min-height: 110px;
+  }
+  .rightSide .inputBox textarea{
+	padding-top: 6px;
+  }
+  .rightSide .button{
+	display: inline-block;
+	margin-top: 12px;
+  }
+  .rightSide .button input[type="button"]{
+	color: #fff;
+	font-size: 18px;
+	outline: none;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 6px;
+	background: #3e2093;
+	cursor: pointer;
+	transition: all 0.3s ease;
+  }
+  .button input[type="button"]:hover{
+	background: #5029bc;
+  }
+  
+  @media (max-width: 950px) {
+	.cont{
+	  width: 90%;
+	  padding: 30px 40px 40px 35px ;
+	}
+	.container1 .content .rightSide{
+	 width: 75%;
+	 margin-left: 55px;
+  }
+  }
+  @media (max-width: 820px) {
+	.cont{
+	  margin: 40px 0;
+	  height: 100%;
+	}
+	.container1 .content{
+	  flex-direction: column-reverse;
+	}
+   .container1 .content .leftSide{
+	 width: 100%;
+	 flex-direction: row;
+	 margin-top: 40px;
+	 justify-content: center;
+	 flex-wrap: wrap;
+   }
+   .container1 .content .leftSide::before{
+	 display: none;
+   }
+   .container1 .content .rightSide{
+	 width: 100%;
+	 margin-left: 0;
+   }
+  }

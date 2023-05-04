@@ -7,26 +7,25 @@ const Footer = () => {
       <div className="footer-section">
         <ul>
           <h1>Help & Contact</h1>
-          <li><a>Your Account</a></li>
-          <li><a>Your Order</a></li>
-          <li><a>Contact us</a></li>
+          <li><a href='/Profile'>Your Account</a></li>
+          <li><a href='/Contact'>Contact us</a></li>
         </ul>
       </div>
       <div className="footer-section">
         <ul>
           <h1>Product Categories</h1>
-          <li><a>Vollyball</a></li>
-          <li><a>Football</a></li>
-          <li><a>Cricket</a></li>
-          <li><a>Badminton</a></li>
+          <li><a href='/Category'>Vollyball</a></li>
+          <li><a href='/Category'>Football</a></li>
+          <li><a href='/Category'>Cricket</a></li>
+          <li><a href='/Category'>Badminton</a></li>
         </ul>
       </div>
       <div className="footer-section">
         <ul>
           <h1>About us</h1>
-          <li><a>Email</a></li>
+          <li><a >Email</a></li>
           <li><a href="https://instagram.com/atul_akku">Instagram</a></li>
-          <li><a>Facebook</a></li>
+          <li><a href='https://www.facebook.com/profile.php?id=100010328431787&sk='>Facebook</a></li>
         </ul>
       </div>
     </div>

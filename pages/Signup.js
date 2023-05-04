@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/Style.module.css'
 import { FaLinkedinIn, FaGoogle, FaFacebookF } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,6 +9,20 @@ const Signup = () => {
   const [password, setpassword] = useState("")
   const [name, setname] = useState("")
   const [phone, setphone] = useState("")
+  const [ques, setQues] = useState("")
+  // const [user, setUser] = useState({value: null})
+
+  // useEffect(()=>{
+  //   const user = JSON.parse(localStorage.getItem('myuser'))
+  //   if(!user) {
+  //     Router.push('/')
+  //   }
+  //   if(user && user.token){
+  //     setUser(user)
+  //     setemail(user.email)
+  //   }
+  // }
+  //   )
   const onchange = (e) => {
     if (e.target.name == 'email') {
       setemail(e.target.value)
@@ -22,10 +36,91 @@ const Signup = () => {
     else if (e.target.name == 'phone') {
       setphone(e.target.value)
     }
+    else if (e.target.name == 'ques') {
+      setQues(e.target.value)
+    }
   }
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const data = { name, email, password, phone }
+    e.preventDefault();
+
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/;
+    const phoneRegex = /^(\+?\d{1,3}[- ]?)?\d{10}$/;
+    const nameRegex = /^(?=.*[a-zA-Z]).{3,}$/;
+    const quesRegex = /^(?=.*[a-zA-Z])/;
+
+    
+    if (!nameRegex.test(name)) {
+      toast.error('Name should be atleast of 3 characters', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    return;
+    }
+    
+    if (!phoneRegex.test(phone)) {
+      toast.error('Please enter a valid mobile number', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    return;
+    }
+    
+    if (!emailRegex.test(email)) {
+      toast.error('Please enter a valid email address', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+      });
+      return;
+    }
+
+    if (!quesRegex.test(ques)) {
+      toast.error('Please enter answer for security question', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      toast.error('Password must be at least 6 characters long and contain at least one digit, one lowercase letter, and one uppercase letter', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+      });
+      return;
+    }
+
+    const data = { name, email, password, phone, ques }
     const res = await fetch(`http://localhost:3000/api/signup`, {
       method: 'POST',
       headers: {
@@ -38,6 +133,7 @@ const Signup = () => {
     setname("")
     setpassword("")
     setphone("")
+    setQues('')
 
     if (response.success) {
       toast.success('Your account have been created! Now please Login', {
@@ -104,6 +200,9 @@ const Signup = () => {
               <label htmlFor='email' className={styles.lab}>Email</label>
               <input onChange={onchange} name="email" value={email} type="text" placeholder="Email" />
               <br></br>
+
+              <label htmlFor='ques' className={styles.lab}>what is your favourite food</label>
+              <input onChange={onchange} name="ques" value={ques} type="text" placeholder="plz remember it if you forgot your password" />
 
               <label htmlFor='password' className={styles.lab}>Password</label>
               <input onChange={onchange} name="password" value={password} type="password" placeholder="Password" />

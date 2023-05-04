@@ -20,6 +20,22 @@ const login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!emailRegex.test(email)) {
+      toast.error('Please enter a valid email address', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+      });
+      return;
+    }
+
     const data = { email, password }
     const res = await fetch(`http://localhost:3000/api/login`, {
       method: 'POST',
@@ -107,7 +123,8 @@ const login = () => {
             </div>
 
             <br></br>
-
+            
+            <a href={'/ForgotPassword'}> <p className={styles.lab}>Forgot password</p></a>
 
             <br></br>
             <div className={styles.buttons}>

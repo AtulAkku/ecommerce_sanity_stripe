@@ -8,7 +8,7 @@ const handler = async (req, res) => {
   if (req.method == 'POST') {
 
    let user = await User.findOne({"email": req.body.email})
-   const bytes = CryptoJS.AES.decrypt(user.password,"secret123");
+   const bytes = CryptoJS.AES.decrypt(user.password,"jwtsecreat");
    let decryptedData = (bytes.toString(CryptoJS.enc.Utf8));
 
     if(user){

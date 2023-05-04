@@ -3,7 +3,7 @@ export default {
   title: 'Product',
   type: 'document',
   fields: [
-    {
+    { 
       name: 'image',
       title: 'Image',
       type: 'array',
@@ -35,6 +35,18 @@ export default {
       name: 'details',
       title: 'Details',
       type: 'string',
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+     type:'array',
+     of: [
+       {
+         name:'tag',
+         title:'Tag',
+         type:'string'
+       }
+     ]
     }
   ]
 }
