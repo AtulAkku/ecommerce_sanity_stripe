@@ -44,7 +44,7 @@ const Signup = () => {
     e.preventDefault();
 
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()_+={}\[\]|\\;:'",.<>\/?~-]*$/;
     const phoneRegex = /^(\+?\d{1,3}[- ]?)?\d{10}$/;
     const nameRegex = /^(?=.*[a-zA-Z]).{3,}$/;
     const quesRegex = /^(?=.*[a-zA-Z])/;

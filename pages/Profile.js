@@ -89,6 +89,53 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    const phoneRegex = /^(\+?\d{1,3}[- ]?)?\d{10}$/;
+    const pincodeRegex = /^(\+?\d{1,3}[- ]?)?\d{6}$/;
+    const nameRegex = /^(?=.*[a-zA-Z]).{3,}$/;
+
+    if (!nameRegex.test(name)) {
+      toast.error('Name should be atleast of 3 characters', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      toast.error('Please enter a valid mobile number', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    return;
+    }
+
+    if (!pincodeRegex.test(pincode)) {
+      toast.error('Please enter a valid pincode number', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    return;
+    }
+
     const data = { token:user, name, phone, address, pincode }
     const res = await fetch(`http://localhost:3000/api/profile`, {
       method: 'POST',
@@ -115,6 +162,22 @@ const Profile = () => {
   }
 
 const passwordReset =async ()=>{
+
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()_+={}\[\]|\\;:'",.<>\/?~-]*$/;
+
+  if (!passwordRegex.test(npassword)) {
+    toast.error('Password must be at least 6 characters long and contain at least one digit, one lowercase letter, and one uppercase letter', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    return;
+  }
 
   let res
     if(npassword==cpassword){
@@ -203,11 +266,11 @@ const passwordReset =async ()=>{
       </form>
       <div className={styles.inputs}>
         <label htmlFor='password' className={styles.lab}>Old Password</label>
-        <input onChange={onchange} name="password" value={password} type="password" placeholder="Password" />
+        <input onChange={onchange} name="password" value={password} type="password" placeholder="Enter old password" />
         <label htmlFor='npassword' className={styles.lab}>New Password</label>
-        <input onChange={onchange} name="npassword" value={npassword} type="password" placeholder="N Password" />
+        <input onChange={onchange} name="npassword" value={npassword} type="password" placeholder="Enter new password" />
         <label htmlFor='cpassword' className={styles.lab}>Confirm New Password</label>
-        <input onChange={onchange} name="cpassword" value={cpassword} type="password" placeholder="confirm Password" />
+        <input onChange={onchange} name="cpassword" value={cpassword} type="password" placeholder="Confirm new password" />
         <button onClick={passwordReset}>Reset Password</button>
       
         </div>
