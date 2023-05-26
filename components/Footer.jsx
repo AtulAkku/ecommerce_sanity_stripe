@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiFillInstagram, AiOutlineTwitter} from 'react-icons/ai';
+import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 
 const Footer = () => {
   return (<>
@@ -36,7 +36,7 @@ const Footer = () => {
         <AiOutlineTwitter />
       </p>
     </div>
-    </>
+  </>
   )
 }
 

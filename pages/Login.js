@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from '../styles/Style.module.css'
-import { FaLinkedinIn, FaGoogle, FaFacebookF } from 'react-icons/fa';
+import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,14 +24,14 @@ const login = () => {
 
     if (!emailRegex.test(email)) {
       toast.error('Please enter a valid email address', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
       });
       return;
     }
@@ -123,14 +123,12 @@ const login = () => {
             </div>
 
             <br></br>
-            
+
             <a href={'/ForgotPassword'}> <p className={styles.lab}>Forgot password</p></a>
 
             <br></br>
             <div className={styles.buttons}>
               <button>Login</button>
-              {/* <a href='#'>Forgot password?</a>
-              <a href="/Signup">Signup</a> */}
             </div>
           </form>
         </div>

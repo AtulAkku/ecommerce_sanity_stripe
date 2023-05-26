@@ -10,19 +10,7 @@ const Signup = () => {
   const [name, setname] = useState("")
   const [phone, setphone] = useState("")
   const [ques, setQues] = useState("")
-  // const [user, setUser] = useState({value: null})
 
-  // useEffect(()=>{
-  //   const user = JSON.parse(localStorage.getItem('myuser'))
-  //   if(!user) {
-  //     Router.push('/')
-  //   }
-  //   if(user && user.token){
-  //     setUser(user)
-  //     setemail(user.email)
-  //   }
-  // }
-  //   )
   const onchange = (e) => {
     if (e.target.name == 'email') {
       setemail(e.target.value)
@@ -49,7 +37,7 @@ const Signup = () => {
     const nameRegex = /^(?=.*[a-zA-Z]).{3,}$/;
     const quesRegex = /^(?=.*[a-zA-Z])/;
 
-    
+
     if (!nameRegex.test(name)) {
       toast.error('Name should be atleast of 3 characters', {
         position: "top-center",
@@ -60,10 +48,10 @@ const Signup = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
-    return;
+      });
+      return;
     }
-    
+
     if (!phoneRegex.test(phone)) {
       toast.error('Please enter a valid mobile number', {
         position: "top-center",
@@ -74,20 +62,20 @@ const Signup = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
-    return;
+      });
+      return;
     }
-    
+
     if (!emailRegex.test(email)) {
       toast.error('Please enter a valid email address', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
       });
       return;
     }
@@ -102,20 +90,20 @@ const Signup = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
-    return;
+      });
+      return;
     }
 
     if (!passwordRegex.test(password)) {
       toast.error('Password must be at least 6 characters long and contain at least one digit, one lowercase letter, and one uppercase letter', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
       });
       return;
     }
@@ -151,7 +139,6 @@ const Signup = () => {
 
   return (
     <div className={styles.body}>
-
       <ToastContainer
         position="top-left"
         autoClose={5000}
@@ -183,8 +170,6 @@ const Signup = () => {
             </span>
           </div>
         </div>
-
-
         <div className={styles.right}>
           <p className={styles.hadding5}>Signup</p>
           <form onSubmit={handleSubmit}>
@@ -207,10 +192,7 @@ const Signup = () => {
               <label htmlFor='password' className={styles.lab}>Password</label>
               <input onChange={onchange} name="password" value={password} type="password" placeholder="Password" />
             </div>
-
             <br></br>
-
-
             <br></br>
             <button>Signup</button>
           </form>

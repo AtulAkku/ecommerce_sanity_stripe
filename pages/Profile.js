@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/profile.module.css'
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,11 +13,11 @@ const Profile = () => {
   const [pincode, setPincode] = useState("")
   const [name, setname] = useState("")
   const [phone, setphone] = useState("")
-  const [user, setUser] = useState({value: null})
+  const [user, setUser] = useState({ value: null })
   const router = useRouter()
-  useEffect(()=>{
+  useEffect(() => {
     const user = localStorage.getItem('token')
-    if(!user) {
+    if (!user) {
       toast.success('Please Login First', {
         position: "top-center",
         autoClose: 900,
@@ -28,17 +28,16 @@ const Profile = () => {
         progress: undefined,
         theme: "light",
       });
-      // {window.alert("Please Login First")}
       setTimeout(() => {
-        router.push('/')
+        router.push('/Login')
       }, 800);
     }
-    if(user ) {
-      setUser( user )
-      
+    if (user) {
+      setUser(user)
+
       fetchData(user)
     }
-  },[router.query])
+  }, [router.query])
 
   const fetchData = async (token) => {
     let data = { token: token }
@@ -56,7 +55,7 @@ const Profile = () => {
     setPincode(res.pincode)
     setphone(res.phone)
     setemail(res.email)
-  }
+  }
 
 
   const onchange = (e) => {
@@ -104,8 +103,8 @@ const Profile = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
-    return;
+      });
+      return;
     }
 
     if (!phoneRegex.test(phone)) {
@@ -118,8 +117,8 @@ const Profile = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
-    return;
+      });
+      return;
     }
 
     if (!pincodeRegex.test(pincode)) {
@@ -132,11 +131,11 @@ const Profile = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
-    return;
+      });
+      return;
     }
 
-    const data = { token:user, name, phone, address, pincode }
+    const data = { token: user, name, phone, address, pincode }
     const res = await fetch(`http://localhost:3000/api/profile`, {
       method: 'POST',
       headers: {
@@ -161,12 +160,12 @@ const Profile = () => {
     }
   }
 
-const passwordReset =async ()=>{
+  const passwordReset = async () => {
 
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()_+={}\[\]|\\;:'",.<>\/?~-]*$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()_+={}\[\]|\\;:'",.<>\/?~-]*$/;
 
-  if (!passwordRegex.test(npassword)) {
-    toast.error('Password must be at least 6 characters long and contain at least one digit, one lowercase letter, and one uppercase letter', {
+    if (!passwordRegex.test(npassword)) {
+      toast.error('Password must be at least 6 characters long and contain at least one digit, one lowercase letter, and one uppercase letter', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -175,28 +174,28 @@ const passwordReset =async ()=>{
         draggable: true,
         progress: undefined,
         theme: "light",
-    });
-    return;
-  }
+      });
+      return;
+    }
 
-  let res
-    if(npassword==cpassword){
-    let data = { token: user ,password,cpassword,npassword}
-    console.log(data)
-    const a = await fetch(`http://localhost:3000/api/updatepassword`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data),
-    })
-    res = await a.json();
-  }
-  else{
-    res = {success:false}
-  }
+    let res
+    if (npassword == cpassword) {
+      let data = { token: user, password, cpassword, npassword }
+      console.log(data)
+      const a = await fetch(`http://localhost:3000/api/updatepassword`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      })
+      res = await a.json();
+    }
+    else {
+      res = { success: false }
+    }
 
-    if(res.success){
+    if (res.success) {
       toast.success("Successfully updated your password", {
         position: "bottom-left",
         autoClose: 5000,
@@ -211,7 +210,7 @@ const passwordReset =async ()=>{
       setNpassword('')
       setCpassword('')
     }
-    else{
+    else {
       toast.error("Error updating password", {
         position: "bottom-left",
         autoClose: 5000,
@@ -224,13 +223,13 @@ const passwordReset =async ()=>{
       });
 
     }
-}
+  }
 
 
   return (
 
-  <div className={styles.container}>
-          <ToastContainer
+    <div className={styles.container}>
+      <ToastContainer
         position="top-left"
         autoClose={5000}
         hideProgressBar={false}
@@ -242,27 +241,27 @@ const passwordReset =async ()=>{
         pauseOnHover
         theme="light"
       />
-    <form onSubmit={handleSubmit}>
-      <div className={styles.inputs}>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.inputs}>
 
-        <label htmlFor='name' className={styles.lab}>Name</label>
-        <input onChange={onchange} name="name" value={name} type="text" placeholder="Enter your name" />
+          <label htmlFor='name' className={styles.lab}>Name</label>
+          <input onChange={onchange} name="name" value={name} type="text" placeholder="Enter your name" />
 
-        <label htmlFor='email' className={styles.lab}>Email(can not be updated)</label>
-        <input onChange={onchange} name="email" value={email} type="text" placeholder='Email' readOnly={true} />
+          <label htmlFor='email' className={styles.lab}>Email(can not be updated)</label>
+          <input onChange={onchange} name="email" value={email} type="text" placeholder='Email' readOnly={true} />
 
-        <label htmlFor='phone' className={styles.lab}>Mobile Number</label>
-        <input onChange={onchange} name="phone" value={phone} type="text" placeholder="Enter your Mobile Number" />
+          <label htmlFor='phone' className={styles.lab}>Mobile Number</label>
+          <input onChange={onchange} name="phone" value={phone} type="text" placeholder="Enter your Mobile Number" />
 
-        <label htmlFor='address' className={styles.lab}>Address</label>
-        <input onChange={onchange} cols='30' rows='2' name="address" value={address} type="text" placeholder="Enter your Address" />
+          <label htmlFor='address' className={styles.lab}>Address</label>
+          <input onChange={onchange} cols='30' rows='2' name="address" value={address} type="text" placeholder="Enter your Address" />
 
-        <label htmlFor='pincode' className={styles.lab}>Pincode</label>
-        <input onChange={onchange} name="pincode" value={pincode} type="text" placeholder="Enter Your Area Pin" />
+          <label htmlFor='pincode' className={styles.lab}>Pincode</label>
+          <input onChange={onchange} name="pincode" value={pincode} type="text" placeholder="Enter Your Area Pin" />
 
-        <br></br>
-      <button>Update</button>
-      </div>
+          <br></br>
+          <button>Update</button>
+        </div>
       </form>
       <div className={styles.inputs}>
         <label htmlFor='password' className={styles.lab}>Old Password</label>
@@ -272,29 +271,11 @@ const passwordReset =async ()=>{
         <label htmlFor='cpassword' className={styles.lab}>Confirm New Password</label>
         <input onChange={onchange} name="cpassword" value={cpassword} type="password" placeholder="Confirm new password" />
         <button onClick={passwordReset}>Reset Password</button>
-      
-        </div>
-      <br></br>
-
-
-      <br></br>
-   
-
-
-
-    {/* <div className={styles.picture}>
-        <img src="https://picsum.photos/150" alt="Profile picture" />
       </div>
-      <div className={styles.name}>{user.name}</div>
-      <div className={styles.description}>Frontend Developer</div>
-      <div className={styles.social}>
-        <a href="#"><i className={`fab fa-twitter-square ${styles.twitter}`}></i></a>
-        <a href="#"><i className={`fab fa-instagram-square ${styles.instagram}`}></i></a>
-        <a href="#"><i className={`fab fa-linkedin ${styles.linkedin}`}></i></a>
-      </div> */}
-  </div>
-    )
+      <br></br>
+      <br></br>
+    </div>
+  )
 }
-
 
 export default Profile

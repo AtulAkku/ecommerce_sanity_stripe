@@ -1,10 +1,9 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { useRouter } from 'next/router';
-import Cart from './Cart';
 
 const Layout = ({ children }) => {
 
@@ -22,15 +21,15 @@ const Layout = ({ children }) => {
   }, [router.query])
 
 
-  const logout =()=>{
+  const logout = () => {
     localStorage.removeItem('token');
-    setUser({value:null})
+    setUser({ value: null })
     setKey(Math.random())
     router.push(`http://localhost:3000/`)
-       }
+  }
 
 
- 
+
 
   return (
     <div className="layout">
@@ -38,7 +37,7 @@ const Layout = ({ children }) => {
         <title>Sports Out Studios</title>
       </Head>
       <header>
-        {key && <Navbar user={user} logout={logout}/>}
+        {key && <Navbar user={user} logout={logout} />}
       </header>
       <main className="mainContainer">
         {children}

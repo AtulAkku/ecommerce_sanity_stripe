@@ -40,7 +40,6 @@ const ForgotPassword = () => {
       body: JSON.stringify(data),
     });
     const response = await res.json();
-    // console.log(response.email)
 
 
     if (response.success) {
@@ -73,36 +72,49 @@ const ForgotPassword = () => {
 
   const handlePupdate = async (e) => {
     e.preventDefault();
-    if(cpassword==npassword){
-    const data = { email,npassword,answer};
-    const res = await fetch(`http://localhost:3000/api/resetPassword`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    const response = await res.json();
-  
-  
-
-    if (response.success) {
-      toast.success('Password matched successfully.', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
+    if (cpassword == npassword) {
+      const data = { email, npassword, answer };
+      const res = await fetch(`http://localhost:3000/api/resetPassword`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
-      setTimeout(() => {
-        
-        router.push('http://localhost:3000/Login')
-      }, 800);
-    } else {
-      toast.error("Answer did't matched", {
+      const response = await res.json();
+
+
+
+      if (response.success) {
+        toast.success('Password matched successfully.', {
+          position: 'bottom-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+        setTimeout(() => {
+
+          router.push('http://localhost:3000/Login')
+        }, 800);
+      } else {
+        toast.error("Answer did't matched", {
+          position: 'bottom-left',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+    }
+    else {
+      toast.error("Password and New Password didn't matched", {
         position: 'bottom-left',
         autoClose: 5000,
         hideProgressBar: false,
@@ -113,19 +125,6 @@ const ForgotPassword = () => {
         theme: 'light',
       });
     }
-  }
-  else{
-    toast.error("Password and New Password didn't matched", {
-      position: 'bottom-left',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  }
   }
 
   return (
@@ -145,7 +144,6 @@ const ForgotPassword = () => {
       <div className={styles.boxform}>
         <div>
           <p className={styles.hadding5}>Forgot Password</p>
-          {/* <form onSubmit={handleSubmit}> */}
           {!user && <><p className={styles.para}>Enter your registered email address below and we will send you a link to reset your password.</p>
             <div className={styles.inputs}>
               <label htmlFor='email' className={styles.lab}>Email</label>
@@ -160,23 +158,21 @@ const ForgotPassword = () => {
             <div className={styles.inputs}>
               <label htmlFor='answer' className={styles.lab}>What is your favourite food</label>
               <input onChange={handleChange} name="answer" value={answer} type="text" placeholder="Please enter answer case sensitive" />
-            <label htmlFor='npassword' className={styles.lab}>New Password</label>
-            <input onChange={handleChange} name="npassword" value={npassword} type="password" placeholder="Enter new password" />
-            <label htmlFor='cpassword' className={styles.lab}>Confirm New Password</label>
-            <input onChange={handleChange} name="cpassword" value={cpassword} type="password" placeholder="Confirm new password" />
-        
+              <label htmlFor='npassword' className={styles.lab}>New Password</label>
+              <input onChange={handleChange} name="npassword" value={npassword} type="password" placeholder="Enter new password" />
+              <label htmlFor='cpassword' className={styles.lab}>Confirm New Password</label>
+              <input onChange={handleChange} name="cpassword" value={cpassword} type="password" placeholder="Confirm new password" />
+
             </div>
             <br></br>
             <div className={styles.buttons}>
               <button onClick={handlePupdate}>Update Password</button>
             </div>
-          </>}
-          {/* </form> */}
+          </>
+          }
         </div>
       </div>
     </div>
   );
-
-
 }
 export default ForgotPassword
